@@ -7,7 +7,9 @@ import com.javanauta.bffagendador.bussines.dto.in.UsuarioDTORequest;
 import com.javanauta.bffagendador.bussines.dto.out.EnderecoDTOResponse;
 import com.javanauta.bffagendador.bussines.dto.out.TelefoneDTOResponse;
 import com.javanauta.bffagendador.bussines.dto.out.UsuarioDTOResponse;
+import com.javanauta.bffagendador.bussines.dto.out.ViaCepDTOResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 //Se comporta como se fosse um Postman, onde ele faz a requisição no endpoint busca usuario por email
@@ -52,4 +54,8 @@ public interface UsuarioClient {
     @PostMapping("/telefone")
     TelefoneDTOResponse cadastraTelefone(@RequestBody TelefoneDTORequest dto,
                                         @RequestHeader("Authorization") String token);
+
+    @GetMapping("/endereco/{cep}")
+    public ViaCepDTOResponse buscarDadosCep(@PathVariable("cep") String cep);
+
 }
